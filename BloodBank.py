@@ -82,16 +82,19 @@ def viewAll(): #view all records in blood bank
         Label(allreport, text=dat[5]).grid(row=index + 1, column=11)
 
 def searchBSql(): #sql operation on searchblood group button
-    blood = b_txt.get()
+    blood = (b_txt.get(),)
 
     myconn = mysql.connector.connect(host='localhost', user='root', password='', database='bloodbank')
     cur = myconn.cursor()
-    query = "Select * from users where bgroup='%s'"
+    query = "Select * from users where bgroup=%s"
+    print(blood)
     cur.execute(query,blood)
     data = cur.fetchall()
+    print(data)
     myconn.close()
 
     for index, dat in enumerate(data):
+        
         Label(searchb, text=dat[0]).grid(row=index + 3, column=1)
         Label(searchb, text=dat[1]).grid(row=index + 3, column=3)
         Label(searchb, text=dat[2]).grid(row=index + 3, column=5)
@@ -100,6 +103,7 @@ def searchBSql(): #sql operation on searchblood group button
         Label(searchb, text=dat[5]).grid(row=index + 3, column=11)
 
 def searchBlood(): #Search using blood group
+    global searchb
     searchb = Toplevel()
     searchb.geometry('500x500')
     searchb.title("Search with blood group")
@@ -112,25 +116,26 @@ def searchBlood(): #Search using blood group
     searchb_btn = Button(searchb,text="Search",font=('Times', 15),command=searchBSql).grid(column=1,row=1)
 
 def searchPSql(): #sql operation on search Phone number button
-    phone = p_txt.get()
+    phone = (p_txt.get(),)
 
     myconn = mysql.connector.connect(host='localhost', user='root', password='', database='bloodbank')
     cur = myconn.cursor()
-    query = "Select * from users where phone='%s'"
+    query = "Select * from users where phone=%s"
     cur.execute(query,phone)
     data = cur.fetchall()
     myconn.close()
 
     for index, dat in enumerate(data):
-        Label(searchb, text=dat[0]).grid(row=index + 3, column=1)
-        Label(searchb, text=dat[1]).grid(row=index + 3, column=3)
-        Label(searchb, text=dat[2]).grid(row=index + 3, column=5)
-        Label(searchb, text=dat[3]).grid(row=index + 3, column=7)
-        Label(searchb, text=dat[4]).grid(row=index + 3, column=9)
-        Label(searchb, text=dat[5]).grid(row=index + 3, column=11)
+        Label(searchp, text=dat[0]).grid(row=index + 3, column=1)
+        Label(searchp, text=dat[1]).grid(row=index + 3, column=3)
+        Label(searchp, text=dat[2]).grid(row=index + 3, column=5)
+        Label(searchp, text=dat[3]).grid(row=index + 3, column=7)
+        Label(searchp, text=dat[4]).grid(row=index + 3, column=9)
+        Label(searchp, text=dat[5]).grid(row=index + 3, column=11)
 
 def searchPhone(): #Search using phone number
     global p_txt
+    global searchp
     searchp = Toplevel()
     searchp.geometry('500x500')
     searchp.title("Search with phone number")
@@ -140,13 +145,15 @@ def searchPhone(): #Search using phone number
     p_txt.grid(column=1, row=0)
     searchb_btn = Button(searchp, text="Search", font=('Times', 15), command=searchPSql).grid(column=1, row=1)
 
+
+
 #main window
 window = Tk()
 window.title("Blood Bank")
 window.geometry('720x720')
 
 welcome_label = Label(window,text="Welcome to Blood Group DataBase",font=('Times', 24))
-welcome_label.grid(column=0,row=0)
+welcome_label.grid(column=10,row=0)
 
 new_report_btn = Button(window,text="Add New Report",font=('Times', 15),command=newReport).grid(column=0,row=1)
 

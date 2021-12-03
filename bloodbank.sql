@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2021 at 06:45 AM
+-- Generation Time: Nov 23, 2021 at 07:51 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -32,7 +32,7 @@ CREATE TABLE `users` (
   `name` varchar(25) NOT NULL,
   `age` int(11) NOT NULL,
   `sex` varchar(25) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` varchar(11) NOT NULL,
   `bgroup` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,8 +41,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `age`, `sex`, `phone`, `bgroup`) VALUES
-(1, 'Asif', 27, 'Male', 2147483647, 'A+ve'),
-(2, 'Aivan', 27, 'Male', 2147483647, 'B+ve');
+(1, 'Asif', 27, 'Male', '2147483647', 'A+ve'),
+(2, 'Aivan', 27, 'Male', '2147483647', 'B+ve'),
+(3, 'bishop', 23, 'male', '2147483647', 'O+ve'),
+(4, 'Aasmi', 34, 'Female', '8714818423', 'B+ve');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
